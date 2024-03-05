@@ -1,0 +1,53 @@
+[tool.poetry]
+name = "volttron-lib-auth-zap"
+version = "0.1.0"
+description = "VOLTTRON zmq zap authentication mechanism"
+authors = ["C. Allwardt <3979063+craig8@users.noreply.github.com>"]
+license = "Apache-2.0"
+readme = "README.md"
+repository = "https://github.com/eclipse-volttron/volttron-lib-auth-zap"
+homepage = "https://github.com/eclipse-volttron/volttron-lib-auth-zap"
+keywords = []
+packages = [ { include = "volttron", from = "src" } ]
+classifiers = [
+    "Programming Language :: Python :: 3 :: Only",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Other Audience",
+    "License :: OSI Approved :: Apache Software License"
+]
+[tool.poetry.dependencies]
+python = ">=3.10,<4.0"
+#volttron = { path="../volttron-core", develop = true}
+# volttron-lib-auth = { path="../volttron-lib-auth", develop = true}
+pyzmq = "^25.1.2"
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^3.2.2"
+isort = "^5.10.1"
+safety = "^1.10.3"
+mypy = "^0.942"
+coverage = "^6.3.2"
+Sphinx = "^4.5.0"
+sphinx-rtd-theme = "^1.0.0"
+yapf = "^0.40.2"
+#volttron-testing = {path="../volttron-testing", develop=true}
+
+[tool.yapfignore]
+ignore_patterns = [
+    ".venv/**",
+    ".pytest_cache/**",
+    "dist/**",
+    "docs/**"
+]
+
+[tool.yapf]
+based_on_style = "pep8"
+spaces_before_comment = 4
+column_limit = 120
+split_before_logical_operator = true
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
