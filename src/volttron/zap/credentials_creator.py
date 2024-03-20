@@ -1,6 +1,13 @@
+import base64
+import binascii
+
+from volttron.server.decorators import credentials_creator
 from volttron.types.auth import Credentials, CredentialsCreator, PKICredentials
+from zmq.green import _zmq
+from zmq.utils import z85
 
 
+@credentials_creator
 class ZmqCredentialsCreator(CredentialsCreator):
 
     class Meta:
@@ -10,12 +17,6 @@ class ZmqCredentialsCreator(CredentialsCreator):
         public, secret = _zmq.curve_keypair()
         public, secret = map(encode_key, (public, secret))
         return PKICredentials(identity=identity, publickey=public, secretkey=secret)
-
-
-import base64
-import binascii
-
-from zmq.utils import z85
 
 
 def encode_key(key):
